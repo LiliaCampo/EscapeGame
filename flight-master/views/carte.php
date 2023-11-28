@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
      crossorigin=""/>
-         <link rel="stylesheet" href = 'carte.css'/>
+         <link rel="stylesheet" href = '/assets/carte.css'/>
          <!-- Make sure you put this AFTER Leaflet's CSS -->
 
          <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -18,7 +18,9 @@
         
         <div id="map"></div>
 
-        <script src = "carte.js"></script>
+        <script src = "/assets/carte.js"></script>
+        
+        
     </body>
     
 </html>

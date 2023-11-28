@@ -1,0 +1,53 @@
+body{
+    display: grid;
+    grid-template-rows : repeat(4, 1fr);
+    justify-content: center;
+}
+
+h2{
+    font-family: Akronim, sans-serif;
+    color: rgb(99, 5, 5);
+    justify-content: center;
+    align-items: center;
+    grid-row: 1;
+    font-size: 25px;
+    border: 10px solid;
+    padding: 20px;
+    width: 650px;
+}
+.image_yeux{
+    grid-row:2;
+    
+    justify-content: center;
+    align-items:center;
+    /*comment faire pour centrer les yeux!!??*/
+}
+.form{
+    grid-row:3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red; 
+    
+}
+html{
+    display: grid;
+    
+    
+   
+    /*le fond d'ecran couvre toute la page */
+    background-size: cover;
+    /* Centrez le fond d'ecran horizontalement et verticalement */
+    background-position: center;
+    /* Desactivez la repetition du fond d'ecran */
+    background-repeat: no-repeat;
+    
+    /* Ajoutez une couleur de secours au cas où l'image ne se chargerait pas */
+    background-color: rgb(0, 0, 0);
+    /* Définissez la hauteur de la page, cela dépend de votre conception */
+    height: 100vh;
+    /* Ajustez d'autres styles selon vos besoins */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
