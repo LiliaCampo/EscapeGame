@@ -55,4 +55,3 @@ map.addEventListener("click", function(e) {
   });
   */
 
-"ta mere la tepu"

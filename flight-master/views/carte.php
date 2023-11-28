@@ -20,6 +20,7 @@
 
         <script src = "/assets/carte.js"></script>
         </div>
+        <div id="texteExplicatif">lalala</div>
         
     </body>
     
