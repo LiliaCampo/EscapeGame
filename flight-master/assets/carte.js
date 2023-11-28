@@ -33,7 +33,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 var dictionnaire_icon = L.icon({iconUrl : 'dictionnary.png',iconSize: [60, 60]});
 var dictionnaire = L.marker([35.707385818127044, 139.7617853432894], {icon : dictionnaire_icon});
-var indications_icon = L.icon({iconUrl : 'jap_man.png',iconSize: [40, 50]});
+var indications_icon = L.icon({iconUrl : '../images/jap_man.png',iconSize: [40, 50]});
 var indications = L.marker([35.707570945870046, 139.76315528154376], {icon : indications_icon}).addTo(map);
 var alliance_icon = L.icon({iconUrl : 'wedd_ring.png',iconSize: [60, 60]});
 var alliance = L.marker([35.71060480162236, 139.76841241121295], {icon : alliance_icon}).addTo(map);
