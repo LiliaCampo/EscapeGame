@@ -16,10 +16,10 @@
         
         </div>
         
-        <div id="map"></div>
+        <div id="map">
 
         <script src = "/assets/carte.js"></script>
-        
+        </div>
         
     </body>
     
