@@ -15,7 +15,7 @@
         echo "<p>Bonjour : ".$log."</p>";
     }else{
         echo '
-        <form method="post" action="/identification">
+        <form method="post" action="/carte">
         <div>
             <label>Username: <input type="text" name="user"></label>
         </div>

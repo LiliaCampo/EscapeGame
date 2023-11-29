@@ -1,3 +1,4 @@
+/*
 body {
     display:grid;
     
@@ -13,5 +14,10 @@ body {
 #texteExplicatif{
     grid-row: 4;
     grid-column: 4;
+
+}*/
+
+#map{
+    height : 100%;
 
 }
