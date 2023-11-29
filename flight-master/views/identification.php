@@ -11,25 +11,20 @@
 
 <div class="form">
 <?php
-
-if(isset($log) && !empty($log)){
-    echo "<p>Bonjour : ".$log."</p>";
-}else{
-    echo 
-
-    '<form method="post" action="/carte">
-    <div>
-        <label>Username: <input type="text" name="user"></label>
-    </div>
-    <div>
-        
-        <button>Envoyer</button>
-       
-    </div>
-    </form>';
-}
-
-?>
+    if(isset($log) && !empty($log)){
+        echo "<p>Bonjour : ".$log."</p>";
+    }else{
+        echo '
+        <form method="post" action="/identiifcation">
+        <div>
+            <label>Username: <input type="text" name="user"></label>
+        </div>
+        <div>
+            <button>Envoyer</button>
+        </div>
+        </form>';
+        }
+    ?>
 </div>
 </body>
 </html>
