@@ -1,0 +1,11 @@
+nom,point,icone,minzoomvisible,depart,objet_recuperable,objet_code,objet_recuperable_par_objet,objet_recuperable_par_code
+carte_de_visite,,,,TRUE,FALSE,FALSE,FALSE,FALSE
+argent,,,,TRUE,FALSE,FALSE,FALSE,FALSE
+clef,,,,TRUE,FALSE,FALSE,FALSE,FALSE
+dictionnaire,,,20,FALSE,FALSE,FALSE,TRUE,FALSE
+indications,,,0,FALSE,FALSE,FALSE,TRUE,FALSE
+alliance,,,0,FALSE,FALSE,TRUE,FALSE,FALSE
+coord_hotel,,,21,FALSE,TRUE,FALSE,FALSE,FALSE
+couteau,,,20,FALSE,FALSE,FALSE,FALSE,TRUE
+mari,,,21,FALSE,FALSE,FALSE,FALSE,TRUE
+journal,,,23,FALSE,FALSE,FALSE,TRUE,FALSE
