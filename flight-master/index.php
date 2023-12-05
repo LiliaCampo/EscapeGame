@@ -1,11 +1,30 @@
 <?php
 
-require 'flight/Flight.php';
 session_start();
+
+require 'flight/Flight.php';
+
+echo '1';
+
+//$link = mysqli_connect('localhost', 'postgres', 'postgres', 'postgres');
+$link = pg_connect("host=localhost dbname=postgres user=postgres password=postgres");
+
+//$link = mysqli_connect('u2.ensg.eu', 'geo', '', 'geobase');
+//$link = pg_connect("host=u2.ensg.eu dbname=geobase user=geo password=null");
+
+echo '2';
+
+if (!$link) {
+    die('Erreur de connexion'. mysqli_connect_error());
+  } else {
+    echo 'Succès... ';
+  }
+
+// ----------------------------------------------------------------------
+
 Flight::route('/', function () {
     Flight::render('accueil');
 });
-
 
 
 Flight::route('POST /identification', function() {
@@ -16,7 +35,15 @@ Flight::route('POST /identification', function() {
     }
 });
 
+
+//-------------Connexion table PotsgreSQL-----------------
+
+
+
+
 Flight::route('/carte', function(){
+
+
     Flight::render('carte');
 
 });
@@ -25,3 +52,6 @@ Flight::route('/carte', function(){
 
 Flight::start();
 ?>
+
+
+//haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
