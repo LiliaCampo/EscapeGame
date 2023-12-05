@@ -4,15 +4,9 @@ session_start();
 
 require 'flight/Flight.php';
 
-echo '1';
 
-//$link = mysqli_connect('localhost', 'postgres', 'postgres', 'postgres');
 $link = pg_connect("host=localhost dbname=postgres user=postgres password=postgres");
 
-//$link = mysqli_connect('u2.ensg.eu', 'geo', '', 'geobase');
-//$link = pg_connect("host=u2.ensg.eu dbname=geobase user=geo password=null");
-
-echo '2';
 
 if (!$link) {
     die('Erreur de connexion'. mysqli_connect_error());
