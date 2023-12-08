@@ -6,7 +6,8 @@
         <title>EscapeGame Horreur</title>
         <link rel="stylesheet" href="/assets/styleaccueil.CSS">
         <link href="https://fonts.bunny.net/css?family=Akronim" rel="stylesheet"/>
-        
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
     </head>
     
 

@@ -10,19 +10,29 @@
          <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     </head>
     <body>
-        <div id = "entete">
-        
+        <div id="texteExplicatif"></div>
+
+        <div id = "tracker">
+            <div id=coords>lat : {{mouse.lat}}, lon : {{mouse.lon}}</div>
+            <button id = "start" class="bouton" @click="track">Commencer</button>
         </div>
-        
-        <div id="map">
+
+        <table>
+        <?php 
+        if(isset($req[0])){
+            foreach($req[0] as $elem){
+                echo "<tr><td>".$elem['point']."</td><td>".$elem['nom']."</td></tr>";
+            }
+        }
+        ?>
+        </table>
+
+        <div id="map"></div>
+
         <script src = "/assets/carte.js"></script>
-        </div>
-        <div id="texteExplicatif">
-        
-        </div>
-        
     </body>
     
 </html>

@@ -6,13 +6,8 @@ require 'flight/Flight.php';
 
 
 $link = pg_connect("host=localhost dbname=postgres user=postgres password=postgres");
-
-
-if (!$link) {
-    die('Erreur de connexion'. mysqli_connect_error());
-  } else {
-    echo 'Succès... ';
-  }
+// stocker une variable globale
+Flight::set('db', $link);
 
 // ----------------------------------------------------------------------
 
@@ -36,9 +31,14 @@ Flight::route('POST /identification', function() {
 
 
 Flight::route('/carte', function(){
+    $connect = Flight::get('db');
 
+    // afficher objet sur carte avec bon zoom
+    $results = pg_query($connect, "SELECT nom, point, url, size, minzoomvisible FROM objet WHERE point IS NOT NULL;");
+    $tab = pg_fetch_all($results);
+    
 
-    Flight::render('carte');
+    Flight::render('carte', ['req'=>[$tab]]);
 
 });
 
