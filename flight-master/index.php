@@ -37,7 +37,6 @@ Flight::route('/carte', function(){
     $results = pg_query($connect, "SELECT nom, point, url, size, minzoomvisible FROM objet WHERE point IS NOT NULL;");
     $tab = pg_fetch_all($results);
     
-
     Flight::render('carte', ['req'=>[$tab]]);
 
 });
