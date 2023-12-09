@@ -5,6 +5,7 @@ session_start();
 require 'flight/Flight.php';
 
 
+
 $link = pg_connect("host=localhost dbname=postgres user=postgres password=postgres");
 // stocker une variable globale
 Flight::set('db', $link);
@@ -28,8 +29,6 @@ Flight::route('POST /identification', function() {
 //-------------Connexion table PotsgreSQL-----------------
 
 
-
-
 Flight::route('/carte', function(){
     $connect = Flight::get('db');
 
@@ -39,6 +38,16 @@ Flight::route('/carte', function(){
     
     Flight::render('carte', ['req'=>[$tab]]);
 
+
+Flight::route('POST /carte', function(){
+    if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
+        Flight::render('carte', ['log'=>$_SESSION['user']]);
+    }else{
+        Flight::render('carte', ['log'=>null]);
+    }
+
+    Flight::render('carte');
+
 });
 
 
@@ -46,5 +55,3 @@ Flight::route('/carte', function(){
 Flight::start();
 ?>
 
-
-//haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

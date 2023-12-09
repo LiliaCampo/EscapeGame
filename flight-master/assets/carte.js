@@ -72,3 +72,36 @@ map.addEventListener('zoomend',function(){
     objetVisible(journal,23);
 })
 
+//Partie sur l'implémentation du compteur
+
+document.addEventListener("DOMContentLoaded", function() {
+    let tempsAffiche = document.getElementById('tempsAffiche');
+
+    if (tempsAffiche) {
+        let tempsDebut = new Date().getTime();
+
+        function boucle() {
+            let tempsActuel = new Date().getTime();
+            let tempsÉcoulé = tempsActuel - tempsDebut;
+
+            let heures = Math.floor(tempsÉcoulé / 3600000);
+            let minutes = Math.floor((tempsÉcoulé % 3600000) / 60000);
+            let secondes = Math.floor((tempsÉcoulé % 60000) / 1000);
+
+            // Formater le temps
+            let tempsFormate = ajouterZero(heures) + ':' + ajouterZero(minutes) + ':' + ajouterZero(secondes);
+
+            tempsAffiche.innerText = tempsFormate;
+
+            setTimeout(boucle, 1000);
+        }
+
+        function ajouterZero(nombre) {
+            return (nombre < 10 ? '0' : '') + nombre;
+        }
+
+        boucle();
+    } else {
+        console.error("L'élément avec l'ID 'tempsAffiche' n'a pas été trouvé.");
+    }
+});
