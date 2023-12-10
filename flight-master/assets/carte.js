@@ -90,3 +90,6 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error("L'élément avec l'ID 'tempsAffiche' n'a pas été trouvé.");
     }
 });
+
+
+

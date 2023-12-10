@@ -27,24 +27,17 @@ Flight::route('/', function () {
 });
 
 
-Flight::route('POST /identification', function() {
-    if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
-        Flight::render('identification', ['log'=>$_SESSION['user']]);
-    }else{
-        Flight::render('identification', ['log'=>null]);
+Flight::route('POST /identification', function() { 
+    Flight::render('identification');
     }
-});
-
-
-//-------------Connexion table PotsgreSQL-----------------
-
-
+);
 
 
 Flight::route('POST /carte', function(){
+    $_SESSION['user'] = $_POST['user'];
     if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
         Flight::render('carte', ['log'=>$_SESSION['user']]);
-    }else{
+    } else {
         Flight::render('carte', ['log'=>null]);
     }
 

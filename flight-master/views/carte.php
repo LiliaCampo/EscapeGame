@@ -13,7 +13,7 @@
     </head>
     <body>
         <div id="map">
-        <script src = "/assets/carte.js"></script>
+        
         </div>
 
         <div id="heure">
@@ -21,8 +21,9 @@
         </div>
         
         <div id="texteExplicatif">
-        bonjour  <?php echo $log ?>
+            bonjour  <?php echo $log ?>
         </div>
+        <script src = "/assets/carte.js"></script>
         
     </body>
     
