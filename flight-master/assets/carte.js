@@ -14,7 +14,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-
+/*
 let tracker = Vue.createApp({
     data() {
         return{
@@ -32,7 +32,7 @@ let tracker = Vue.createApp({
             });
         },
     },
-}).mount('#tracker');
+}).mount('#tracker');*/
 
 /**********************objets**********************/
 
@@ -72,9 +72,10 @@ map.addEventListener('zoomend',function(){
     objetVisible(journal,23);
 })
 
-//Partie sur l'implémentation du compteur
+
 
 document.addEventListener("DOMContentLoaded", function() {
+    // Implementation du compteur (timer)
     let tempsAffiche = document.getElementById('tempsAffiche');
 
     if (tempsAffiche) {
@@ -104,4 +105,20 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         console.error("L'élément avec l'ID 'tempsAffiche' n'a pas été trouvé.");
     }
+/*
+    // Implementation de l'affichage des coordonnées de la souris
+    let coordsAffiche = document.getElementById('coordsAffiche');
+    
+    if (coordsAffiche) {
+        map.addEventListener("mousemove", function(e) {
+        let lon = e.latlng.lng;
+        let lat = e.latlng.lat;
+
+        let coordsFormate = lon + ', ' + lat;
+        coordsAffiche.innerText = coordsFormate;
+        });
+        
+    } else {
+        console.error("L'élément avec l'ID 'coordsAffiche' n'a pas été trouvé.");
+    }*/
 });

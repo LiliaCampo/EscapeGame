@@ -1,3 +1,5 @@
+/*
+
 //ici mon vue.create n'est pas définis, il ne sait pas ce que c'est ???
 //problème du trackeur aussi, pas sûr qu'il me fais le truc correctement
 let track = Vue.createApp({
@@ -32,9 +34,9 @@ let track = Vue.createApp({
     
     }).mount('#tracker');
   
-
+*/
 /**************** chrono  ******************************* */
-
+/*
 let totalSecondes = 0;
 let startTime = Date.now();
 let sec = 0
@@ -64,3 +66,5 @@ setEtat = function(run, stop) {
   track.etat.run = run;
   track.etat.stop = stop;     
 };
+
+*/

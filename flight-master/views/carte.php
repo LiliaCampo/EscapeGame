@@ -13,9 +13,8 @@
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     </head>
     <body>
-        <div id = "tracker">
-            <div id=coords>lat : {{mouse.lat}}, lon : {{mouse.lon}}</div>
-            <button id = "start" class="bouton" @click="track">Commencer</button>
+        <div id="tracker">
+            <p id="coordsAffiche"></p>
         </div>
 
         <table>
