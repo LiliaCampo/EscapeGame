@@ -37,7 +37,7 @@ Flight::route('/carte', function(){
     $tab = pg_fetch_all($results);
     
     Flight::render('carte', ['req'=>[$tab]]);
-
+});
 
 Flight::route('POST /carte', function(){
     if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
