@@ -13,11 +13,20 @@
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     </head>
     <body>
+        <div id="map"></div>
+
         <div id = "tracker">
-            <div id=coords>lat : {{mouse.lat}}, lon : {{mouse.lon}}</div>
-            <button id = "start" class="bouton" @click="track">Commencer</button>
+            <p id="coordsAffiche"></p>
         </div>
 
+        <div id="heure">
+            <p id="tempsAffiche"></p>
+        </div>
+        
+        <div id="texteExplicatif">
+        
+        </div>
+        
         <table>
         <?php 
         if(isset($req[0])){
@@ -28,16 +37,6 @@
         ?>
         </table>
 
-        <div id="map"></div>
-
-        <div id="heure">
-            <p id="tempsAffiche"></p>
-        </div>
-        
-        <div id="texteExplicatif">
-        bonjour  <?php echo $log ?>
-        </div>
-        
         <script src = "/assets/carte.js"></script>
 
     </body>

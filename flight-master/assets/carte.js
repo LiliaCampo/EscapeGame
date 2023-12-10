@@ -5,6 +5,7 @@ console.log("coucou");
 var zoom_min = 17;
 var zoom_max = 25;
 var zoom_actuel = 19;
+
 var map = L.map('map', {minZoom : zoom_min}).setView([35.707529564411864, 139.76302385330203],zoom_actuel);
 
 
@@ -15,24 +16,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
-let tracker = Vue.createApp({
-    data() {
-        return{
-            mouse : {
-                lon : 0,
-                lat : 0
-            },
-        };
-    },
-    methods :{
-        track(){
-            map.addEventListener("mousemove", function(e) {
-            tracker.mouse.lon = e.latlng.lng;
-            tracker.mouse.lat = e.latlng.lat;
-            });
-        },
-    },
-}).mount('#tracker');
 
 /**********************objets**********************/
 
@@ -73,8 +56,7 @@ map.addEventListener('zoomend',function(){
 })
 
 //Partie sur l'implémentation du compteur
-
-document.addEventListener("DOMContentLoaded", function() {
+function compteur() {
     let tempsAffiche = document.getElementById('tempsAffiche');
 
     if (tempsAffiche) {
@@ -104,4 +86,23 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         console.error("L'élément avec l'ID 'tempsAffiche' n'a pas été trouvé.");
     }
-});
+};
+
+function coords() {
+    let coordsAffiche = document.getElementById('coordsAffiche');
+
+    if (coordsAffiche) {
+        map.addEventListener("mousemove", function(e) {
+            let lon = Math.round(e.latlng.lng * 100000000)/100000000;
+            let lat = Math.round(e.latlng.lat * 100000000)/100000000;
+
+            let coordsFormate =lon + ', ' + lat;
+
+            coordsAffiche.innerText = coordsFormate;
+            });
+    } else {
+        console.error("L'élément avec l'ID 'coordsAffiche' n'a pas été trouvé.");
+    }
+};
+
+document.addEventListener("DOMContentLoaded", compteur(), coords());
