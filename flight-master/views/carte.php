@@ -24,18 +24,10 @@
         </div>
         
         <div id="texteExplicatif">
-        
+        bonjour  <?php echo $log ?>
         </div>
         
-        <table>
-        <?php 
-        if(isset($req[0])){
-            foreach($req[0] as $elem){
-                echo "<tr><td>".$elem['point']."</td><td>".$elem['nom']."</td></tr>";
-            }
-        }
-        ?>
-        </table>
+        <div id = 'objecting'></div>
 
         <script src = "/assets/carte.js"></script>
 

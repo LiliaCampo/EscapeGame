@@ -35,8 +35,13 @@ body {
     padding: 10px;
 }
 
+#tracker {
+    position: absolute;
+    z-index: 1; /* Assurez-vous que le compteur a un z-index plus élevé que la carte */
+
+}
+
 #tracker p {
-    grid-row: 3;
     border: 1px solid #690404;
     padding: 5px;
     background-color: #690404;

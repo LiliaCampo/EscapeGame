@@ -2,7 +2,7 @@ console.log("coucou");
 
 /************************carte*********************/
 
-var zoom_min = 17;
+var zoom_min = 0;
 var zoom_max = 25;
 var zoom_actuel = 19;
 
@@ -19,20 +19,44 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 /**********************objets**********************/
 
-var dictionnaire_icon = L.icon({iconUrl : '../images/dictionnary.png',iconSize: [60, 60]});
-var dictionnaire = L.marker([35.707385818127044, 139.7617853432894], {icon : dictionnaire_icon});
-var indications_icon = L.icon({iconUrl : '../images/jap_man.png',iconSize: [40, 50]});
-var indications = L.marker([35.707570945870046, 139.76315528154376], {icon : indications_icon}).addTo(map);
-var alliance_icon = L.icon({iconUrl : '../images/wedd_ring.png',iconSize: [60, 60]});
-var alliance = L.marker([35.71060480162236, 139.76841241121295], {icon : alliance_icon}).addTo(map);
-var coord_icon = L.icon({iconUrl : '../images/coord_paper.png',iconSize: [70, 70]});
-var coord_hotel = L.marker([35.711701088466086, 139.7685139998794], {icon : coord_icon}).addTo(map);
-var couteau_icon = L.icon({iconUrl : '../images/knife.png',iconSize: [50, 50]});
-var couteau = L.marker([35.713119133684295, 139.75828103721142], {icon : couteau_icon}).addTo(map);
-var mari_icon = L.icon({iconUrl : '../images/dead_man.png',iconSize: [150, 225]});
-var mari = L.marker([35.71327920324335, 139.75836485624316], {icon : mari_icon}).addTo(map);
-var journal_icon = L.icon({iconUrl : '../images/diary.png',iconSize: [100, 60]});
-var journal = L.marker([35.7133227595303, 139.7581543028355], {icon : journal_icon}).addTo(map);
+let objects = Vue.createApp({
+    data() {
+        return {
+            coords : [],
+        }
+    },
+    computed: {
+    },
+    mounted() {
+        this.marker();
+    },
+    methods: {
+        marker(){
+            fetch('/objets', {
+                method: 'post',
+                body: '',
+                headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            })
+            .then(r => r.json())
+            .then(r => {
+                for (let i = 0; i < r.req.length; i++){
+                    data = r.req[i];
+                    //console.log(data);
+                    let lat = JSON.parse(data.geom).coordinates[0];
+                    let lon = JSON.parse(data.geom).coordinates[1];
+                    let sizee = data.size.substring(1, data.size.length - 1).split(",").map(Number);
+
+                    let icone = L.icon({iconUrl : '../images/' + data.url,iconSize:sizee})
+
+                    var marker = L.marker([lat, lon],{icon:icone}).addTo(map);
+                }
+            })
+        }
+    }
+}).mount('#objecting');
+
 
 /**********************fonctions**********************/
 
@@ -96,7 +120,7 @@ function coords() {
             let lon = Math.round(e.latlng.lng * 100000000)/100000000;
             let lat = Math.round(e.latlng.lat * 100000000)/100000000;
 
-            let coordsFormate =lon + ', ' + lat;
+            let coordsFormate =lat + ', ' + lon;
 
             coordsAffiche.innerText = coordsFormate;
             });
