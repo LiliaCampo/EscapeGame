@@ -13,21 +13,11 @@
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     </head>
     <body>
-        <div id="tracker">
+        <div id="map"></div>
+
+        <div id = "tracker">
             <p id="coordsAffiche"></p>
         </div>
-
-        <table>
-        <?php 
-        if(isset($req[0])){
-            foreach($req[0] as $elem){
-                echo "<tr><td>".$elem['point']."</td><td>".$elem['nom']."</td></tr>";
-            }
-        }
-        ?>
-        </table>
-
-        <div id="map"></div>
 
         <div id="heure">
             <p id="tempsAffiche"></p>
@@ -37,6 +27,8 @@
         bonjour  <?php echo $log ?>
         </div>
         
+        <div id = 'objecting'></div>
+
         <script src = "/assets/carte.js"></script>
 
     </body>
