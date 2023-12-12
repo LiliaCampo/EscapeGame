@@ -61,6 +61,10 @@ let objects = Vue.createApp({
 /**********************fonctions**********************/
 
 function objetVisible(objet, minZoomVisible){
+    map.addEventListener('zoomend',function(){
+        zoom_actuel = map.getZoom();
+        console.log(zoom_actuel);
+    })
     if (zoom_actuel >= minZoomVisible){
         objet.addTo(map);
     }
@@ -69,15 +73,7 @@ function objetVisible(objet, minZoomVisible){
     }
 }
 
-map.addEventListener('zoomend',function(){
-    zoom_actuel = map.getZoom();
-    console.log(zoom_actuel);
-    objetVisible(dictionnaire,20);
-    objetVisible(couteau,20);
-    objetVisible(coord_hotel,21);
-    objetVisible(mari,21);
-    objetVisible(journal,23);
-})
+
 
 //Partie sur l'implémentation du compteur
 function compteur() {
