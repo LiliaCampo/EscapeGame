@@ -49,7 +49,7 @@ Flight::route('POST /carte', function(){
 Flight::route('POST /objets', function(){
     $connect = Flight::get('db');
     $geom = [];
-    $resultsgeom = pg_query($connect, "SELECT nom, ST_AsGEOJson(point) AS geom, url, size FROM objet WHERE point IS NOT NULL;");
+    $resultsgeom = pg_query($connect, "SELECT nom, ST_AsGEOJson(point) AS geom, url, size, minzoomvisible FROM objet WHERE point IS NOT NULL and depart;");
     $geom=pg_fetch_all($resultsgeom);
     Flight::json(['req' => $geom]);
 });

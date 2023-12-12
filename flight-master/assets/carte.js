@@ -8,29 +8,29 @@ var zoom_actuel = 19;
 
 var map = L.map('map', {minZoom : zoom_min}).setView([35.707529564411864, 139.76302385330203],zoom_actuel);
 
-
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: zoom_max,
-    maxNativeZoom : 25,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
-
-
+var markers = [];
 
 /**********************objets**********************/
 
-let objects = Vue.createApp({
+Vue.createApp({
     data() {
         return {
-            coords : [],
         }
     },
     computed: {
     },
     mounted() {
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: zoom_max,
+            maxNativeZoom : 25,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
         this.marker();
     },
     methods: {
+        submit(){
+            return; // on empêche le rechargement par défaut
+        },
         marker(){
             fetch('/objets', {
                 method: 'post',
@@ -47,12 +47,18 @@ let objects = Vue.createApp({
                     let lat = JSON.parse(data.geom).coordinates[0];
                     let lon = JSON.parse(data.geom).coordinates[1];
                     let sizee = data.size.substring(1, data.size.length - 1).split(",").map(Number);
-
                     let icone = L.icon({iconUrl : '../images/' + data.url,iconSize:sizee})
+                    let minZoomVisible = data.minzoomvisible;
 
-                    var marker = L.marker([lat, lon],{icon:icone}).addTo(map);
+                    var marker = L.marker([lat, lon],{icon:icone});
+                    markers.push([marker,minZoomVisible]);
                 }
+                objetVisible();
+                console.log('folklore');
             })
+        },
+        woosh(){
+            console.log('reputation');
         }
     }
 }).mount('#objecting');
@@ -60,19 +66,22 @@ let objects = Vue.createApp({
 
 /**********************fonctions**********************/
 
-function objetVisible(objet, minZoomVisible){
-    map.addEventListener('zoomend',function(){
-        zoom_actuel = map.getZoom();
-        console.log(zoom_actuel);
-    })
-    if (zoom_actuel >= minZoomVisible){
-        objet.addTo(map);
-    }
-    else {
-        map.removeLayer(objet);
-    }
-}
+map.addEventListener('zoomend',objetVisible);
 
+function objetVisible(){
+    console.log('1989');
+    zoom_actuel = map.getZoom();
+    for (i=0;i<markers.length;i++){
+        let marker = markers[i][0];
+        let minZoomVisible = markers[i][1];
+        if (zoom_actuel >= minZoomVisible){
+            marker.addTo(map);
+        }
+        else {
+            map.removeLayer(marker);
+        }
+    }
+};
 
 //Partie sur l'implémentation du compteur
 function compteur() {

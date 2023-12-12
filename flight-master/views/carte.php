@@ -29,6 +29,12 @@
         
         <div id = 'objecting'></div>
 
+        <div id = 'inventaire'>
+            <img id="objet" src="../images/business_card.png" alt="TexteAlternatif">
+            <img id="objet" src="../images/money.png" alt="TexteAlternatif">
+            <img id="objet" src="../images/key.png" alt="TexteAlternatif">
+        </div>
+
         <script src = "/assets/carte.js"></script>
 
     </body>
