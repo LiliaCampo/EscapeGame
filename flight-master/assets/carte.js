@@ -10,11 +10,13 @@ var map = L.map('map', {minZoom : zoom_min}).setView([35.707529564411864, 139.76
 
 var markers = [];
 
-/**********************objets**********************/
+/**********************markers**********************/
 
 Vue.createApp({
     data() {
         return {
+            objets_inv : [],
+            texte : '',
         }
     },
     computed: {
@@ -26,12 +28,14 @@ Vue.createApp({
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(map);
         this.marker();
+        this.invent();
+        this.textegen();
     },
     methods: {
         submit(){
             return; // on empêche le rechargement par défaut
         },
-        marker(){
+        marker(){ //à metttre dans computed pour mise à jour auto ?
             fetch('/objets', {
                 method: 'post',
                 body: '',
@@ -47,7 +51,7 @@ Vue.createApp({
                     let lat = JSON.parse(data.geom).coordinates[0];
                     let lon = JSON.parse(data.geom).coordinates[1];
                     let sizee = data.size.substring(1, data.size.length - 1).split(",").map(Number);
-                    let icone = L.icon({iconUrl : '../images/' + data.url,iconSize:sizee})
+                    let icone = L.icon({iconUrl : data.url,iconSize:sizee})
                     let minZoomVisible = data.minzoomvisible;
 
                     var marker = L.marker([lat, lon],{icon:icone});
@@ -58,10 +62,36 @@ Vue.createApp({
             })
         },
         woosh(){
-            console.log('reputation');
+            console.log('woosh');
+        },
+        invent(){
+            fetch('/invent', {
+                method: 'post',
+                body: '',
+                headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            })
+            .then(r => r.json())
+            .then(r => {
+                for (let i = 0; i < r.res.length; i++){
+                    data = r.res[i];
+                    this.objets_inv.push(data.url);
+                }
+            })
+        },
+        textegen(){
+            this.texte = 'blah';
+            return this.texte;
         }
+        
+
+
+
+
     }
 }).mount('#objecting');
+
 
 
 /**********************fonctions**********************/

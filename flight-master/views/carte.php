@@ -23,18 +23,20 @@
             <p id="tempsAffiche"></p>
         </div>
         
-        <div id="texteExplicatif">
-        bonjour  <?php echo $log ?>
+        <div id = 'objecting'>
+            <div id='inventaire'>
+                <div id ="inv" v-for="obj in objets_inv" >
+                    <img class='objet' id='objet' :src='obj'>
+                </div>
+            </div>
+            <div id="zoneTexte">
+                bonjour  <?php echo $log ?>
+                {{texte}}
+            </div>
+
         </div>
+
         
-        <div id = 'objecting'></div>
-
-        <div id = 'inventaire'>
-            <img id="objet" src="../images/business_card.png" alt="TexteAlternatif">
-            <img id="objet" src="../images/money.png" alt="TexteAlternatif">
-            <img id="objet" src="../images/key.png" alt="TexteAlternatif">
-        </div>
-
         <script src = "/assets/carte.js"></script>
 
     </body>

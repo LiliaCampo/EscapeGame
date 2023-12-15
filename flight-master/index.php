@@ -32,7 +32,6 @@ Flight::route('POST /identification', function() {
 );
 
 
-//-------------Connexion table PotsgreSQL-----------------
 
 
 Flight::route('POST /carte', function(){
@@ -45,6 +44,7 @@ Flight::route('POST /carte', function(){
 });
 
 
+//-------------Route markers PotsgreSQL-----------------
 
 Flight::route('POST /objets', function(){
     $connect = Flight::get('db');
@@ -52,6 +52,17 @@ Flight::route('POST /objets', function(){
     $resultsgeom = pg_query($connect, "SELECT nom, ST_AsGEOJson(point) AS geom, url, size, minzoomvisible FROM objet WHERE point IS NOT NULL and depart;");
     $geom=pg_fetch_all($resultsgeom);
     Flight::json(['req' => $geom]);
+});
+
+
+//-------------Route inventaire PotsgreSQL-----------------
+
+Flight::route('POST /invent', function(){
+    $connect = Flight::get('db');
+    $inv = [];
+    $results = pg_query($connect, "SELECT nom, url FROM objet WHERE inventaire;");
+    $inv=pg_fetch_all($results);
+    Flight::json(['res' => $inv]);
 });
 
 
