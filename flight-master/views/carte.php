@@ -1,6 +1,10 @@
 <html>
     <head>
         <title>Carte Escape Game</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="../images/icon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../images/icon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../images/icon/favicon-16x16.png">
+        <link rel="manifest" href="../images/icon/site.webmanifest">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
      crossorigin=""/>
@@ -26,12 +30,12 @@
         <div id = 'objecting'>
             <div id='inventaire'>
                 <div id ="inv" v-for="obj in objets_inv" >
-                    <img class='objet' id='objet' :src='obj'>
+                    <img id='objet' :src='obj.url' @click = 'clicked(obj)' @mouseover = 'mouseovered(obj)'>
                 </div>
             </div>
             <div id="zoneTexte">
-                bonjour  <?php echo $log ?>
-                {{texte}}
+                Bonsoir <?php echo $log ?>
+                <p>{{texte}}</p>
             </div>
 
         </div>

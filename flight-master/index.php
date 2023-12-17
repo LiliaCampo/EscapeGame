@@ -44,25 +44,35 @@ Flight::route('POST /carte', function(){
 });
 
 
-//-------------Route markers PotsgreSQL-----------------
+//-------------Route objets carte starter PotsgreSQL-----------------
 
-Flight::route('POST /objets', function(){
+Flight::route('POST /objets_start', function(){
     $connect = Flight::get('db');
     $geom = [];
-    $resultsgeom = pg_query($connect, "SELECT nom, ST_AsGEOJson(point) AS geom, url, size, minzoomvisible FROM objet WHERE point IS NOT NULL and depart;");
+    $resultsgeom = pg_query($connect, "SELECT ST_AsGEOJson(point) AS geom, * FROM objet WHERE depart;");
     $geom=pg_fetch_all($resultsgeom);
     Flight::json(['req' => $geom]);
 });
 
 
-//-------------Route inventaire PotsgreSQL-----------------
+//-------------Route inventaire starter PotsgreSQL-----------------
 
-Flight::route('POST /invent', function(){
+Flight::route('POST /invent_start', function(){
     $connect = Flight::get('db');
     $inv = [];
-    $results = pg_query($connect, "SELECT nom, url FROM objet WHERE inventaire;");
+    $results = pg_query($connect, "SELECT * FROM objet WHERE inventaire;");
     $inv=pg_fetch_all($results);
     Flight::json(['res' => $inv]);
+});
+
+//-------------Route objet débloqué PotsgreSQL-----------------
+
+Flight::route('POST /debloque', function(){
+    $id = $_POST['objetdebloque'];
+    $connect = Flight::get('db');
+    $result = pg_query($connect, "SELECT ST_AsGEOJson(point) AS geom, * FROM objet WHERE nom = '".$id."';");
+    $results=pg_fetch_all($result);
+    Flight::json(['req' => $results]);
 });
 
 
