@@ -34,7 +34,9 @@ TABLESPACE pg_default;
 ALTER TABLE IF EXISTS public.objet
     OWNER to postgres;
     
-- puis celle-ci : UPDATE GEOM
+- puis celle-ci :
+  UPDATE objet
+SET point = ST_GeomFromText('POINT(' || longitude || ' ' || latitude || ')',3857);
 
 - créer bdd hall of fame
 
