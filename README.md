@@ -33,8 +33,8 @@ TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.objet
     OWNER to postgres;
-    
-- puis celle-ci :
+- importer la table table_objet.csv avec comme délimiteur ';' et header
+- puis lancer la requête suivante :
   UPDATE objet
 SET point = ST_GeomFromText('POINT(' || longitude || ' ' || latitude || ')',3857);
 
