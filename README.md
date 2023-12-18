@@ -38,7 +38,21 @@ ALTER TABLE IF EXISTS public.objet
   UPDATE objet
 SET point = ST_GeomFromText('POINT(' || longitude || ' ' || latitude || ')',3857);
 
-- créer bdd hall of fame
+- Il faut aussi créer une table hall_of_fame dans cette même base de donnée avec la requête :
+Lancer la requête suivante :
+-- Table: public.hall_of_fame
+
+-- DROP TABLE IF EXISTS public.hall_of_fame;
+
+CREATE TABLE IF NOT EXISTS public.objet
+(
+    id integer,
+    joueur_nom character varying(255),
+    score character varying(20)
+)
+Ainsi, à chaque authentification dans le jeu, votre pseudo sera présent dans la base.
+
+- Geoserver
 
 - geoserver
 
