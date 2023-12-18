@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS public.objet
 Ainsi, à chaque authentification dans le jeu, votre pseudo sera présent dans la base.
 
 - Geoserver
+Dans le dossier EscapeGame2, il y a un dossier zip workspace.zip qui contient à la fois EscapeGame et EscapeGame2, il a seulement été mal placé sur git. Ainsi ce fichier est à récupérer. C'est l'espace de travail EscapeGame qui est utilisé dans le code, mais il a besoin de EscapeGame2 pour exister. La couche s'appelle objet et utilise le style SLD2 définie dans le workspace EscapeGame2 pour fonctionner. 
 
 
 Maintenant, quelques précisions sur le jeu :
@@ -62,6 +63,7 @@ Maintenant, quelques précisions sur le jeu :
 - Pour une plus grande immersion, nous autorisons et même obligeons l'utilisateur à effectuer de grands zooms normalement impossibles avec Leaflet. Au-delà d'un certain zoom, vous ne verrez sûrement plus les tuiles mais ne vous inquiétez pas, il suffit de dézoomer pour qu'elles réapparaissent.
 - Pour "donner" un objet, il suffit de cliquer d'abord sur l'objet à donner situé dans l'inventaire, puis sur l'objet receveur sur la carte.
 - Des textes de contextualisation, de description et d'aide sont affichés dans la zone en bas à droite de l'écran, merci d'en prendre compte.
+- Pour le hall of fame, le pseudo de l'utilisateur est récupéré à chaque partie et inséré dans la database. Le score correspond au compteur du joueur(tempsfinal) qui se stoppe à la fin pour être récupéré. La route en commentaire /enregistrerscore devrait servir à envoyer le score vers la database mais elle ne fonctionne pas.
 
 Déroulement du jeu :
 - sur Accueil, cliquer sur "Nouvelle partie"
