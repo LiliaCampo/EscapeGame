@@ -120,7 +120,7 @@ html{
     color :#ff0000;
 }
 
-#activerTricheButton{
+#actTriche{
     position: absolute;
     z-index: 3;
     bottom: 170px;

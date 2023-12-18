@@ -11,6 +11,15 @@ var map = L.map('map', {minZoom : zoom_min}).setView([35.707529564411864, 139.76
 var group = L.featureGroup();
 group.addTo(map);
 
+var triche = L.tileLayer.wms("http://localhost:8080/geoserver/EscapeGame/wms",
+            {
+                layers: 'EscapeGame:objet',
+                format: 'image/png',
+                transparent: true,
+                tiled : true,
+            }
+            );
+
 /**********************markers**********************/
 
 Vue.createApp({
@@ -197,7 +206,19 @@ Vue.createApp({
                 if (this.objets_inv[i].nom == 'journal_ouvert' || this.objets_inv[i].nom == 'couteau' || this.objets_inv[i].nom == 'mari' ){k+=1};
             };
             if (k==3){this.fin=true;}
-        }
+        },
+        activerTriche() {
+            // activer la triche
+            console.log('yes');
+            if (!this.ctriche){
+                map.addLayer(triche);
+            }else{map.removeLayer(triche);}
+            // Utilisation de bringToFront pour amener la couche au premier plan
+            triche.bringToFront();
+        },
+        setupTriche() {
+            document.getElementById("ctriche").addEventListener("click", this.activerTriche);
+        },
 
 
     }

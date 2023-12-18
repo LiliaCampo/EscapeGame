@@ -48,9 +48,10 @@
                         <p id='err' v-if = 'error'>{{errormsg}}</p>
                 </form>
             </div>
-
-            <button id='activerTricheButton'>Activer la triche</button>
             <button id='stopButton' v-if='fin'>Fin du jeu</button>
+        </div>
+        <div id="actTriche">
+            <label>Activer la triche<input type="checkbox" id="ctriche" v-model="ctriche" v-on:click="visibility"></label>
         </div>
         
         <script src = "/assets/carte.js"></script>
