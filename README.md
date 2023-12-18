@@ -1,8 +1,3 @@
-Lil 7 <liliajapan7@gmail.com>
-	
-22:47 (il y a 3 minutes)
-	
-À moi
 Avant de commencer à jouer, quelques points sur les manipulations à effectuer :
 - dans EscapeGame>flight_master>bdd télécharger 'bdd.csv'
 - ouvrir pgAdmin avec user: postgres et password: postgres
