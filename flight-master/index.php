@@ -55,16 +55,6 @@ Flight::route('POST /objets_start', function(){
 });
 
 
-//-------------Route inventaire starter PotsgreSQL-----------------
-
-Flight::route('POST /invent_start', function(){
-    $connect = Flight::get('db');
-    $inv = [];
-    $results = pg_query($connect, "SELECT * FROM objet WHERE inventaire;");
-    $inv=pg_fetch_all($results);
-    Flight::json(['res' => $inv]);
-});
-
 //-------------Route objet débloqué PotsgreSQL-----------------
 
 Flight::route('POST /debloque', function(){

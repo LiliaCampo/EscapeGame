@@ -20,10 +20,14 @@ Vue.createApp({
             markers : [],
             objets_inv : [],
             texte : '',
+            indice : '',
             just_clicked : null,
             last_clicked : null,
             objet_unblocked_name : '',
-            indications : '50m E ; 150m N ; 50m E ; 150m N ; 170m E ; 60m N ; 180m E ; 40m N.'
+            testcode : '',
+            demandecode : false,
+            errormsg : 'Mauvais code',
+            error : false,
         }
     },
     computed: {
@@ -43,8 +47,6 @@ Vue.createApp({
         }
         north.addTo(map);
         this.carte();
-        //this.invent();
-        this.textegen();
     },
     methods: {
         submit(){
@@ -85,6 +87,7 @@ Vue.createApp({
                 var marker = L.marker([lon, lat],{icon:icone});
                 marker.on('click', ()=>{this.clicked(data);});
                 marker.on('mouseover', ()=>{this.mouseovered(data);});
+                marker.on('mouseout', ()=>{this.mouseouted();});
                 this.markers.push([marker,minZoomVisible]);
             }
             this.objetVisible();
@@ -101,26 +104,6 @@ Vue.createApp({
                     group.removeLayer(marker);
                 }
             }
-        },/*
-        invent(){
-            fetch('/invent_start', {
-                method: 'post',
-                body: '',
-                headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            })
-            .then(r => r.json())
-            .then(r => {
-                for (let i = 0; i < r.res.length; i++){
-                    data = r.res[i];
-                    this.objets_inv.push(data);
-                }
-            })
-        },*/
-        textegen(nouveau){
-            this.texte = nouveau;
-            return this.texte;
         },
         clicked(obj){
             this.last_clicked = this.just_clicked;
@@ -128,42 +111,31 @@ Vue.createApp({
             let just = this.just_clicked;
             let last = this.last_clicked;
             console.log(last, just);
-            if (just.nom == 'monsieur' && this.objets_carte.includes(just)){this.monsieur();}
-            else if (just.objet_recuperable=='t' && this.objets_carte.includes(just)){this.objet_recovering();}
-            else if (just.objet_bloque_par_objet=='t' && (last.nom == just.objet_qui_bloque)){this.objet_recuperable_par_objet();}
-            else if (just.objet_code=='t' && this.objets_carte.includes(just)){this.objet_recovering();}
-            else if (just.objet_bloque_par_code=='t' && this.objets_carte.includes(just)){this.objet_recuperable_par_code()}
+            if (just.objet_recuperable=='t' && this.objets_carte.includes(just)){this.objet_recovering();}
+            else if (just.objet_code=='t'){this.objet_coding();}
+            else if (just.objet_bloque_par_objet=='t'){
+                let present = false;
+                for (i=0;i<this.objets_inv.length;i++){
+                    if (this.objets_inv[i].nom == just.objet_qui_bloque){present=true};
+                };
+                if (!present){this.objet_manquant()}
+                else if (last.nom == just.objet_qui_bloque){this.objet_blocked_par_objet();}
+                }
+            else if (just.objet_bloque_par_code=='t'){
+                this.objet_manquant();
+                this.demandecode = true;}
             else {console.log("c'est caca")}
         },
         mouseovered(obj){
-            this.textegen(obj.description);
+            this.texte = obj.description;
             //ajouter indice
             if (obj.nom == 'monsieur' && this.objets_inv.includes(obj)){
-                this.textegen(this.indications);
+                this.texte = this.indications;
             }
         },
-        monsieur(){
-            //console.log(this.objets_inv);
-            if (this.last_clicked.nom == 'carte_de_visite'){
-                this.textegen('Monsieur : "あなたはわかりません。"');
-                let index_donne = this.objets_inv.indexOf(this.last_clicked);
-                this.objets_inv.splice(index_donne,1);
-            }
-            else if(this.last_clicked.nom == 'dictionnaire' && this.objets_inv.includes(this.last_clicked)){
-                this.textegen('Monsieur : "' + this.indications + '"');
-                this.objet_recuperable_par_objet();
-            }
-            else{this.textegen('Monsieur : "???"')};
-        },
-        objet_recuperable_par_objet(){
-            console.log('on récupère.');
-            let index_donne = this.objets_inv.indexOf(this.last_clicked); //last_clicked est l'objet qui permet de récupérer
-            this.objets_inv.splice(index_donne,1);
-            this.objet_recovering();
-
-            this.objet_unblocked_name = this.just_clicked.objet_debloque;
-            //console.log(this.objet_unblocked_name);
-            this.objet_unblocking();
+        mouseouted(){
+            this.texte='';
+            this.indice='';
         },
         objet_unblocking(){
             fetch('/debloque', {
@@ -186,17 +158,36 @@ Vue.createApp({
             this.objets_carte.splice(index_recup,1);
             this.markering();
         },
-        objet_recuperable_par_code(){
-            let code_entry = prompt("Rentrer le code de la chambre d'hôtel :");
-            while (code_entry !=this.just_clicked.code_qui_bloque){
-                let mauvais = prompt("Mauvais code, veuillez réessayer :");
-                code_entry=mauvais;
-            }
-            this.objet_recovering();
+        objet_blocked_par_objet(){
+            let index_donne = this.objets_inv.indexOf(this.last_clicked); //last_clicked est l'objet qui permet de récupérer
+            this.objets_inv.splice(index_donne,1);
+            this.updating();
+        },
+        objet_blocked_par_code(){
+           if (this.testcode==this.just_clicked.code_qui_bloque){
+               this.demandecode=false;
+               this.updating();
+           }
+           else {this.error = true;}
+        },
+        updating(){
+            let index_recup = this.objets_carte.indexOf(this.just_clicked);
+            this.objets_carte.splice(index_recup,1);
+            this.markering();
             this.objet_unblocked_name = this.just_clicked.objet_debloque;
             this.objet_unblocking();
-        }
-
+        },
+        objet_coding(){
+            let lng = this.just_clicked.longitude;
+            let lat = this.just_clicked.latitude;
+            let code = this.just_clicked.code;
+            var popup = L.popup([lat,lng], {content: code}).openOn(map);
+        },
+        objet_manquant(){
+            let obj_manquant = this.just_clicked.objet_qui_bloque;
+            this.texte = "Il vous manque l'objet " + obj_manquant + " pour accéder à cet objet.";
+            this.indice = this.just_clicked.indice;
+        },
 
 
 
@@ -208,9 +199,6 @@ Vue.createApp({
 
 /**********************fonctions**********************/
 
-map.addEventListener('click',function(e){
-    console.log(e.latlng);
-})
 
 //Partie sur l'implémentation du compteur
 function compteur() {

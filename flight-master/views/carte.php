@@ -28,16 +28,26 @@
         </div>
         
         <div id = 'objecting'>
-            <div id='inventaire'>
-                <div id ="inv" v-for="obj in objets_inv" >
-                    <img id='objet' :src='obj.url' @click = 'clicked(obj)' @mouseover = 'mouseovered(obj)'>
-                </div>
-            </div>
-            <div id="zoneTexte">
-                Bonsoir <?php echo $log ?>
-                <p>{{texte}}</p>
-            </div>
 
+                <div id='inventaire'>
+                    <div id ="inv" v-for="obj in objets_inv" >
+                        <img id='objet' :src='obj.url' @click = 'clicked(obj)' @mouseover = 'mouseovered(obj)' @mouseout='mouseouted'>
+                    </div>
+                </div>
+                <div id="zoneTexte">
+                    Bonsoir <?php echo $log ?>
+                    <p>{{texte}}</p>
+                    <p>{{indice}}</p>
+                </div>
+            
+            <div id = 'codeporte' v-if = 'demandecode'>
+                <form method="post" action="" @submit.prevent="submit">
+                        <input type="text" id="code" name="code" pattern="\d{4}" title="Code à 4 chiffres" required v-model='testcode' ></input>
+                        <button type="submit" id='confbutt' @click='objet_blocked_par_code()()'>Confirmer</button>
+                        <button type="submit" id='annbutt' @click='demandecode=false'>Annuler</button>
+                        <p id='err' v-if = 'error'>{{errormsg}}</p>
+                </form>
+            </div>
         </div>
 
         

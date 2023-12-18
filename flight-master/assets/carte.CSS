@@ -54,6 +54,7 @@ html{
     grid-template-columns: 20% 20% 20% 20% 20%;
 }
 
+
 #zoneTexte {
     grid-row: 5;
     grid-column: 4/6;
@@ -73,6 +74,7 @@ html{
     background-color: rgb(196, 172, 172);
 }
 
+
 #inv {
     grid-row: 1;
     display: flex;
@@ -86,3 +88,30 @@ html{
     max-height : 100%;
 }
 
+
+#codeporte{
+    grid-row : 2;
+    grid-column : 2;
+    height : 300px;
+    width : 230px;
+    z-index:1;
+    border: 3px solid #00299a;
+    padding:10px;
+    background-color: rgb(4, 4, 36);
+    display : grid;
+    grid-row : 120px 1fr 20px;
+    grid-column : 1fr 50px 1fr;
+}
+
+#code{
+    height : 120px;
+    width : 230px;
+    font-size : 100;
+}
+
+#confbutt{
+}
+
+#err{
+    color :#ff0000;
+}
