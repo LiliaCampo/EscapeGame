@@ -1,5 +1,5 @@
 Avant de commencer à jouer, quelques points sur les manipulations à effectuer :
-- dans EscapeGame>flight_master>bdd télécharger 'bdd.csv'
+- dans EscapeGame>flight_master>bdd , télécharger 'table_objet.csv'
 - ouvrir pgAdmin avec user: postgres et password: postgres
 - lancer la requête suivante :
   -- Table: public.objet
