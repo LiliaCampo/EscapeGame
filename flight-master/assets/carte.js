@@ -233,7 +233,33 @@ Vue.createApp({
         },
         setupTriche() {
             document.getElementById("ctricheid").addEventListener("click", this.activerTriche);
+        },
+        /*
+        enregistrerScore() {
+            // Logique spécifique à Vue pour enregistrer le score
+        
+            
+    
+            if (nomJoueur) {
+                fetch('/enregistrer_score', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'nom=' + encodeURIComponent(nomJoueur) + '&score=' + encodeURIComponent(this.tempsEcoule),
+                })
+                .then(response => {
+                    window.location.href = '/accueil';
+                    console.log('Score enregistré avec succès');
+                })
+                .catch(error => {
+                    console.error('Erreur lors de l\'enregistrement du score :', error);
+                });
+            } else {
+                console.error('Le nom du joueur est vide.');
+            }
         }
+        */
 }
 
 }).mount('#objecting');

@@ -41,6 +41,11 @@ Flight::route('POST /carte', function(){
     } else {
         Flight::render('carte', ['log'=>null]);
     }
+    $nom=$_SESSION['user'];
+    /*
+    $connect = Flight::get('db');
+    $query = "INSERT INTO hall_of_fame (joueur_nom) VALUES ('$nom')";
+    pg_query($connect, $query);*/
 });
 
 
@@ -63,6 +68,20 @@ Flight::route('POST /debloque', function(){
     $result = pg_query($connect, "SELECT ST_AsGEOJson(point) AS geom, * FROM objet WHERE nom = '".$id."';");
     $results=pg_fetch_all($result);
     Flight::json(['req' => $results]);
+});
+
+//----------------Connexion hall of fame-----------------
+
+Flight::route('POST /enregistrer_score', function(){
+    $connect = Flight::get('db');
+    $tps = $_POST['tempsfinal'];
+
+    $query = "INSERT INTO hall_of_fame (score) VALUES ('$tps')";
+    $restps = pg_query($connect, $query);
+    $restpsfetch = pg_fetch_all($restps);
+    
+    // Rediriger vers la page d'accueil après l'enregistrement du score
+    Flight::render('/accueil');
 });
 
 
