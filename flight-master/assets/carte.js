@@ -143,7 +143,7 @@ Vue.createApp({
             else if (just.objet_bloque_par_code=='t'){
                 this.objet_manquant();
                 this.demandecode = true;}
-            else {console.log("c'est caca")}
+            else {console.log("rien")}
             this.ending();
         },
         mouseovered(obj){
