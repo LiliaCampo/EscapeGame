@@ -55,7 +55,7 @@ Déroulement du jeu :
 - inscrire votre pseudo, puis cliquer sur "Envoyer"
 - la page de jeu s'ouvre, le compteur démarre
 - la triche est activable à tout moment grâce à une case à cocher
-- récupérer la clé, la carte de visite et l'argent (objets correspondant à l'inventaire)
+- récupérer la clé, la carte de visite et l'argent (objets tombés des poches du personnage)
 - donner la carte de visite au monsieur japonais, il vous répond en japonais
 - se diriger vers l'Ouest, dans un magasin, et y effectuer 1 zoom pour découvrir un dictionnaire à vendre
 - "donner" l'argent au dictionnaire avec étiquette, le même dictionnaire sans étiquette apparaît
