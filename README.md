@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS public.objet
 Ainsi, à chaque authentification dans le jeu, votre pseudo sera présent dans la base.
 
 - Geoserver
+Dans le dossier EscapeGame2, il y a un dossier zip workspace.zip qui contient à la fois EscapeGame et EscapeGame2, il a seulement été mal placé sur git. Ainsi ce fichier est à récupérer. C'est l'espace de travail EscapeGame qui est utilisé dans le code, mais il a besoin de EscapeGame2 pour exister. La couche s'appelle objet et utilise le style SLD2 définie dans le workspace EscapeGame2 pour fonctionner.
 
 
 Maintenant, quelques précisions sur le jeu :
