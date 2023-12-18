@@ -24,6 +24,22 @@ html{
     z-index:2;  
 }
 
+#tempsfin {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    z-index: 2; /* Assurez-vous que le compteur a un z-index plus élevé que la carte */
+
+}
+
+#tempsfin p {
+    border: 1px solid #c92828;
+    padding: 5px;
+    background-color: #c92828;
+    z-index:3;
+    color : rgb(235, 219, 219)
+}
+
 #map {
     grid-row: 1 / 5;
     grid-column: 1 / 6;
@@ -113,8 +129,6 @@ html{
     font-size : 100;
 }
 
-#confbutt{
-}
 
 #err{
     color :#ff0000;
@@ -125,6 +139,7 @@ html{
     z-index: 3;
     bottom: 170px;
     left: 330px;
+    border: 3px solid #690404;
 }
 
 #stopButton{

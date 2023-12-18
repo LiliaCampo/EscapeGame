@@ -49,10 +49,16 @@
                 </form>
             </div>
             <button id='stopButton' v-if='fin'>Fin du jeu</button>
+
+            <div id="actTriche">
+                <label>Activer la triche<input type="checkbox" id="ctricheid" v-model="ctriche"></label>
+            </div>
+            
+            <div id="tempsfin" v-if = 'fin'>
+                <p>{{temps_final}}</p>
+            </div>
         </div>
-        <div id="actTriche">
-            <label>Activer la triche<input type="checkbox" id="ctriche" v-model="ctriche" v-on:click="visibility"></label>
-        </div>
+        
         
         <script src = "/assets/carte.js"></script>
 

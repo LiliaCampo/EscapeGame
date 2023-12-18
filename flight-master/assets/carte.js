@@ -11,6 +11,11 @@ var map = L.map('map', {minZoom : zoom_min}).setView([35.707529564411864, 139.76
 var group = L.featureGroup();
 group.addTo(map);
 
+var fin2 = false;
+var heures = 0;
+var minutes = 0;
+var secondes = 0;
+
 var triche = L.tileLayer.wms("http://localhost:8080/geoserver/EscapeGame/wms",
             {
                 layers: 'EscapeGame:objet',
@@ -38,7 +43,10 @@ Vue.createApp({
             demandecode : false,
             errormsg : 'Mauvais code',
             error : false,
+            ctriche: false,
             fin : false,
+            temps_final :'',
+            cherjournal : "Cher journal, Nous venons d'arriver à Tokyo pour notre lune de miel. Les paysages sont incroyables, je n'aurais jamais imaginé me trouver ici un jour ! Je ne comprends pas du tout la langue et je me sens quelque peu perdue dans cette mégalopole, mais cela ne m'empêche pas d'apprécier la vue. Nous avons prévu d'aller au restaurant ce soir. J'espère que tout se passera bien. En ce moment il est un peu à cran et il a besoin de se défouler plus que d'habitude. Je ne lui en veux pas, cela peut arriver à tout le monde de craquer. Vraiment tout le monde. J'ai hâte de goûter la vraie cuisine japonaise ! À bientôt cher journal."
         }
     },
     computed: {
@@ -205,23 +213,28 @@ Vue.createApp({
             for (i=0;i<this.objets_inv.length;i++){
                 if (this.objets_inv[i].nom == 'journal_ouvert' || this.objets_inv[i].nom == 'couteau' || this.objets_inv[i].nom == 'mari' ){k+=1};
             };
-            if (k==3){this.fin=true;}
+            if (k==3){
+                fin2 =true;
+                this.fin=true;
+                if (heures<10){
+                    if (minutes<10){this.temps_final = '0' + heures + ':0' + minutes + ':' + secondes}
+                    else {this.temps_final = '0' + heures + ':' + minutes + ':' + secondes}}
+                else{this.temps_final='TROP NULS'};
+                alert(this.cherjournal);
+            }
         },
         activerTriche() {
-            // activer la triche
-            console.log('yes');
-            if (!this.ctriche){
-                map.addLayer(triche);
-            }else{map.removeLayer(triche);}
+            console.log(this.ctriche);
+            if (this.ctriche){
+                map.removeLayer(triche);
+            }else{map.addLayer(triche);}
             // Utilisation de bringToFront pour amener la couche au premier plan
             triche.bringToFront();
         },
         setupTriche() {
-            document.getElementById("ctriche").addEventListener("click", this.activerTriche);
-        },
-
-
-    }
+            document.getElementById("ctricheid").addEventListener("click", this.activerTriche);
+        }
+}
 
 }).mount('#objecting');
 
@@ -241,9 +254,9 @@ function compteur() {
             let tempsActuel = new Date().getTime();
             let tempsÉcoulé = tempsActuel - tempsDebut;
 
-            let heures = Math.floor(tempsÉcoulé / 3600000);
-            let minutes = Math.floor((tempsÉcoulé % 3600000) / 60000);
-            let secondes = Math.floor((tempsÉcoulé % 60000) / 1000);
+            heures = Math.floor(tempsÉcoulé / 3600000);
+            minutes = Math.floor((tempsÉcoulé % 3600000) / 60000);
+            secondes = Math.floor((tempsÉcoulé % 60000) / 1000);
 
             // Formater le temps
             let tempsFormate = ajouterZero(heures) + ':' + ajouterZero(minutes) + ':' + ajouterZero(secondes);
