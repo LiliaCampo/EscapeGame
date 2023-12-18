@@ -54,7 +54,6 @@ Ainsi, à chaque authentification dans le jeu, votre pseudo sera présent dans l
 
 - Geoserver
 
-- geoserver
 
 Maintenant, quelques précisions sur le jeu :
 
