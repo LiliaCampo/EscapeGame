@@ -1,7 +1,39 @@
 Avant de commencer à jouer, quelques points sur les manipulations à effectuer :
 - dans EscapeGame>flight_master>bdd télécharger 'bdd.csv'
 - ouvrir pgAdmin avec user: postgres et password: postgres
-- lancer la requête suivante : DROP, ALTER
+- lancer la requête suivante :
+  -- Table: public.objet
+
+-- DROP TABLE IF EXISTS public.objet;
+
+CREATE TABLE IF NOT EXISTS public.objet
+(
+    nom character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    point geometry,
+    minzoomvisible integer,
+    depart boolean,
+    objet_recuperable boolean,
+    objet_code boolean,
+    objet_bloque_par_objet boolean,
+    objet_bloque_par_code boolean,
+    url character varying(200) COLLATE pg_catalog."default",
+    size numeric[],
+    longitude double precision,
+    latitude double precision,
+    objet_debloque character varying(20) COLLATE pg_catalog."default",
+    code integer,
+    description character varying COLLATE pg_catalog."default",
+    objet_qui_bloque character varying COLLATE pg_catalog."default",
+    code_qui_bloque integer,
+    indice character varying COLLATE pg_catalog."default",
+    CONSTRAINT objet_pkey PRIMARY KEY (nom)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.objet
+    OWNER to postgres;
+    
 - puis celle-ci : UPDATE GEOM
 
 - créer bdd hall of fame
