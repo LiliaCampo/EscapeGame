@@ -1,0 +1,49 @@
+Lil 7 <liliajapan7@gmail.com>
+	
+22:47 (il y a 3 minutes)
+	
+À moi
+Avant de commencer à jouer, quelques points sur les manipulations à effectuer :
+- dans EscapeGame>flight_master>bdd télécharger 'bdd.csv'
+- ouvrir pgAdmin avec user: postgres et password: postgres
+- lancer la requête suivante : DROP, ALTER
+- puis celle-ci : UPDATE GEOM
+
+- créer bdd hall of fame
+
+- geoserver
+
+Maintenant, quelques précisions sur le jeu :
+- il se joue sur le navigateur Chrome
+- le son doit être activé dès le lancement de la page d'accueil
+- pour une plus grande immersion, nous autorisons et même obligeons l'utilisateur à effectuer de grands zooms normalement impossibles avec Leaflet. Au-delà d'un certain zoom, vous ne verrez sûrement plus les tuiles mais ne vous inquiétez pas, il suffit de dézoomer pour qu'elles réapparaissent
+- pour "donner" un objet, il suffit de cliquer d'abord sur l'objet à donner situé dans l'inventaire, puis sur l'objet receveur sur la carte
+- des textes de contextualisation, de description et d'aide sont affichés dans la zone en bas à droite de l'écran, merci d'en prendre compte
+
+Déroulement du jeu :
+- sur Accueil, cliquer sur "Nouvelle partie"
+- inscrire votre pseudo, puis cliquer sur "Envoyer"
+- la page de jeu s'ouvre, le compteur démarre
+- la triche est activable à tout moment grâce à une case à cocher
+- récupérer la clé, la carte de visite et l'argent
+- donner la carte de visite au monsieur japonais, il vous répond en japonais
+- se diriger vers l'Ouest, dans un magasin, et y effectuer 1 zoom pour découvrir un dictionnaire à vendre
+- "donner" l'argent au dictionnaire avec étiquette, le même dictionnaire sans étiquette apparaît
+- récupérer le dictionnaire acheté
+- donner le dictionnaire au monsieur japonais, il vous répond avec des directions
+- vous pouvez récupérer les indications
+- grâce à l'echelle en bas à gauche de la carte, suivre les indications qui vous mènent au restaurant d'où vient la carte de visite
+- clique sur l'alliance pour voir apparaître un code
+- la description indique des poubelles au Nord du restaurant
+- aller vers le Nord, le long du lac
+- zoomer sur la poubelle (à l'Ouest du chemin), récupérer le papier avec des coordonnées
+- s'aider du tracker de la souris pour aller sur le point décrit sur le papier
+- zoomer pour découvrir une porte bloquée par un code
+- inscrire le code donné par l'alliance (2711) puis Confirmer
+- récupérer le couteau qui vient d'apparaître
+- zoomer légèrement dans la pièce pour voir l'homme décédé, le récupérer
+- zoomer fortement dans le coin NO de la pièce pour y découvrir un journal intime
+- donner la clé au journal intime fermé
+- récupérer le journal intime ouvert
+- votre temps s'affiche où il y avait le compteur, une fenêtre s'ouvre avec ce qu'il y a écrit dans le journal intime pour comprendre ce qu'il s'est passé
+- cliquer sur le bouton "Fin du jeu" qui vient d'apparaître pour retourner à la page d'accueil
