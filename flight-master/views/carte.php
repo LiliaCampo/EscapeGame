@@ -42,14 +42,16 @@
             
             <div id = 'codeporte' v-if = 'demandecode'>
                 <form method="post" action="" @submit.prevent="submit">
-                        <input type="text" id="code" name="code" pattern="\d{4}" title="Code à 4 chiffres" required v-model='testcode' ></input>
+                        <input type="text" id="code" name="code" pattern="\d{4}" title="Code à 4 chiffres" v-model='testcode' ></input>
                         <button type="submit" id='confbutt' @click='objet_blocked_par_code()'>Confirmer</button>
                         <button type="submit" id='annbutt' @click='demandecode=false'>Annuler</button>
                         <p id='err' v-if = 'error'>{{errormsg}}</p>
                 </form>
             </div>
-        </div>
 
+            <button id='activerTricheButton'>Activer la triche</button>
+            <button id='stopButton' v-if='fin'>Fin du jeu</button>
+        </div>
         
         <script src = "/assets/carte.js"></script>
 

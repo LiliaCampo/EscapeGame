@@ -18,9 +18,9 @@ html{
 }
 
 #heure p {
-    border: 1px solid #690404;
+    border: 1px solid #8e4242;
     padding: 5px;
-    background-color: #690404;
+    background-color: #8e4242;
     z-index:2;  
 }
 
@@ -36,13 +36,14 @@ html{
 #tracker {
     position: absolute;
     z-index: 1; /* Assurez-vous que le compteur a un z-index plus élevé que la carte */
-
+    bottom: 150px;
+    left: 120px;
 }
 
 #tracker p {
-    border: 1px solid #690404;
+    border: 1px solid #8e4242;
     padding: 5px;
-    background-color: #690404;
+    background-color: #8e4242;
     z-index:2;  
 }
 
@@ -88,6 +89,9 @@ html{
     max-height : 100%;
 }
 
+#inv:hover{
+    background-color : #690404;
+}
 
 #codeporte{
     grid-row : 2;
@@ -114,4 +118,18 @@ html{
 
 #err{
     color :#ff0000;
+}
+
+#activerTricheButton{
+    position: absolute;
+    z-index: 3;
+    bottom: 170px;
+    left: 330px;
+}
+
+#stopButton{
+    position: absolute;
+    z-index: 3;
+    bottom: 170px;
+    left: 440px;
 }

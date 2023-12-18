@@ -19,7 +19,8 @@ Vue.createApp({
             objets_carte : [],
             markers : [],
             objets_inv : [],
-            texte : '',
+            texteintro : "Vous vous trouvez dans une ruelle, seule, la nuit. Vous ne savez pas où vous êtes ni comment vous êtes arrivée là. Tout ce que vous remarquez, ce sont les traces de sang sur votre robe blanche. Tout ce que vous voulez faire, c'est vous remémorer comment et pourquoi vous en êtes arrivée là.",
+            texte : "Vous vous trouvez dans une ruelle, seule, la nuit. Vous ne savez pas où vous êtes ni comment vous êtes arrivée là. Tout ce que vous remarquez, ce sont les traces de sang sur votre robe blanche. Tout ce que vous voulez faire, c'est vous remémorer comment et pourquoi vous en êtes arrivée là.",
             indice : '',
             just_clicked : null,
             last_clicked : null,
@@ -28,6 +29,7 @@ Vue.createApp({
             demandecode : false,
             errormsg : 'Mauvais code',
             error : false,
+            fin : false,
         }
     },
     computed: {
@@ -46,13 +48,13 @@ Vue.createApp({
         return div;
         }
         north.addTo(map);
-        this.carte();
+        this.start();
     },
     methods: {
         submit(){
             return; // on empêche le rechargement par défaut
         },
-        carte(){ //à metttre dans computed pour mise à jour auto ?
+        start(){ //à metttre dans computed pour mise à jour auto ?
             fetch('/objets_start', {
                 method: 'post',
                 body: '',
@@ -125,6 +127,7 @@ Vue.createApp({
                 this.objet_manquant();
                 this.demandecode = true;}
             else {console.log("c'est caca")}
+            this.ending();
         },
         mouseovered(obj){
             this.texte = obj.description;
@@ -134,7 +137,7 @@ Vue.createApp({
             }
         },
         mouseouted(){
-            this.texte='';
+            this.texte=this.texteintro;
             this.indice='';
         },
         objet_unblocking(){
@@ -188,7 +191,13 @@ Vue.createApp({
             this.texte = "Il vous manque l'objet " + obj_manquant + " pour accéder à cet objet.";
             this.indice = this.just_clicked.indice;
         },
-
+        ending(){
+            let k = 0;
+            for (i=0;i<this.objets_inv.length;i++){
+                if (this.objets_inv[i].nom == 'journal_ouvert' || this.objets_inv[i].nom == 'couteau' || this.objets_inv[i].nom == 'mari' ){k+=1};
+            };
+            if (k==3){this.fin=true;}
+        }
 
 
     }
